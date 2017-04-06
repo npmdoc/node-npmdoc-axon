@@ -1,0 +1,2261 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/visionmedia/axon#readme"
+
+    >axon (v2.0.3)</a>
+</h1>
+<h4>High-level messaging & socket patterns implemented in pure js</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon">module axon</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PubEmitterSocket">
+            function <span class="apidocSignatureSpan">axon.</span>PubEmitterSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PubSocket">
+            function <span class="apidocSignatureSpan">axon.</span>PubSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PullSocket">
+            function <span class="apidocSignatureSpan">axon.</span>PullSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PushSocket">
+            function <span class="apidocSignatureSpan">axon.</span>PushSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.RepSocket">
+            function <span class="apidocSignatureSpan">axon.</span>RepSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.ReqSocket">
+            function <span class="apidocSignatureSpan">axon.</span>ReqSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket">
+            function <span class="apidocSignatureSpan">axon.</span>Socket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubEmitterSocket">
+            function <span class="apidocSignatureSpan">axon.</span>SubEmitterSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket">
+            function <span class="apidocSignatureSpan">axon.</span>SubSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.socket">
+            function <span class="apidocSignatureSpan">axon.</span>socket
+            <span class="apidocSignatureSpan">(type, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>PubSocket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>PullSocket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>RepSocket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>ReqSocket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>Socket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>SubEmitterSocket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>SubSocket.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>types</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.PubSocket">module axon.PubSocket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PubSocket.PubSocket">
+            function <span class="apidocSignatureSpan">axon.</span>PubSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.PubSocket.prototype">module axon.PubSocket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PubSocket.prototype.send">
+            function <span class="apidocSignatureSpan">axon.PubSocket.prototype.</span>send
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.PullSocket">module axon.PullSocket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PullSocket.PullSocket">
+            function <span class="apidocSignatureSpan">axon.</span>PullSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.PullSocket.prototype">module axon.PullSocket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.PullSocket.prototype.send">
+            function <span class="apidocSignatureSpan">axon.PullSocket.prototype.</span>send
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.RepSocket">module axon.RepSocket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.RepSocket.RepSocket">
+            function <span class="apidocSignatureSpan">axon.</span>RepSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.RepSocket.prototype">module axon.RepSocket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.RepSocket.prototype.onmessage">
+            function <span class="apidocSignatureSpan">axon.RepSocket.prototype.</span>onmessage
+            <span class="apidocSignatureSpan">(sock)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.ReqSocket">module axon.ReqSocket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.ReqSocket.ReqSocket">
+            function <span class="apidocSignatureSpan">axon.</span>ReqSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.ReqSocket.prototype">module axon.ReqSocket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.ReqSocket.prototype.id">
+            function <span class="apidocSignatureSpan">axon.ReqSocket.prototype.</span>id
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.ReqSocket.prototype.onmessage">
+            function <span class="apidocSignatureSpan">axon.ReqSocket.prototype.</span>onmessage
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.ReqSocket.prototype.send">
+            function <span class="apidocSignatureSpan">axon.ReqSocket.prototype.</span>send
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.Socket">module axon.Socket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.Socket">
+            function <span class="apidocSignatureSpan">axon.</span>Socket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.Socket.prototype">module axon.Socket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.addSocket">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>addSocket
+            <span class="apidocSignatureSpan">(sock)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.address">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>address
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.bind">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>bind
+            <span class="apidocSignatureSpan">(port, host, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.close">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>close
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.closeServer">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>closeServer
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.closeSockets">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>closeSockets
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.connect">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>connect
+            <span class="apidocSignatureSpan">(port, host, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.disable">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>disable
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.disabled">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>disabled
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.enable">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>enable
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.enabled">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>enabled
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.get">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>get
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.handleErrors">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>handleErrors
+            <span class="apidocSignatureSpan">(sock)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.onconnect">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>onconnect
+            <span class="apidocSignatureSpan">(sock)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.onmessage">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>onmessage
+            <span class="apidocSignatureSpan">(sock)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.pack">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>pack
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.removeSocket">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>removeSocket
+            <span class="apidocSignatureSpan">(sock)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.set">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>set
+            <span class="apidocSignatureSpan">(name, val)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.Socket.prototype.use">
+            function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>use
+            <span class="apidocSignatureSpan">(plugin)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">axon.Socket.prototype.</span>settings</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.SubEmitterSocket">module axon.SubEmitterSocket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubEmitterSocket.SubEmitterSocket">
+            function <span class="apidocSignatureSpan">axon.</span>SubEmitterSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.SubEmitterSocket.prototype">module axon.SubEmitterSocket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubEmitterSocket.prototype.off">
+            function <span class="apidocSignatureSpan">axon.SubEmitterSocket.prototype.</span>off
+            <span class="apidocSignatureSpan">(event)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubEmitterSocket.prototype.on">
+            function <span class="apidocSignatureSpan">axon.SubEmitterSocket.prototype.</span>on
+            <span class="apidocSignatureSpan">(event, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubEmitterSocket.prototype.onmessage">
+            function <span class="apidocSignatureSpan">axon.SubEmitterSocket.prototype.</span>onmessage
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.SubSocket">module axon.SubSocket</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.SubSocket">
+            function <span class="apidocSignatureSpan">axon.</span>SubSocket
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.SubSocket.prototype">module axon.SubSocket.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.prototype.clearSubscriptions">
+            function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>clearSubscriptions
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.prototype.hasSubscriptions">
+            function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>hasSubscriptions
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.prototype.matches">
+            function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>matches
+            <span class="apidocSignatureSpan">(topic)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.prototype.onmessage">
+            function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>onmessage
+            <span class="apidocSignatureSpan">(sock)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.prototype.send">
+            function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>send
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.prototype.subscribe">
+            function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>subscribe
+            <span class="apidocSignatureSpan">(re)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.SubSocket.prototype.unsubscribe">
+            function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>unsubscribe
+            <span class="apidocSignatureSpan">(re)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.types">module axon.types</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.pub">
+            function <span class="apidocSignatureSpan">axon.types.</span>pub
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.pub-emitter">
+            function <span class="apidocSignatureSpan">axon.types.</span>pub-emitter
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.pull">
+            function <span class="apidocSignatureSpan">axon.types.</span>pull
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.push">
+            function <span class="apidocSignatureSpan">axon.types.</span>push
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.rep">
+            function <span class="apidocSignatureSpan">axon.types.</span>rep
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.req">
+            function <span class="apidocSignatureSpan">axon.types.</span>req
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.sub">
+            function <span class="apidocSignatureSpan">axon.types.</span>sub
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.types.sub-emitter">
+            function <span class="apidocSignatureSpan">axon.types.</span>sub-emitter
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.axon.utils">module axon.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.axon.utils.slice">
+            function <span class="apidocSignatureSpan">axon.utils.</span>slice
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon" id="apidoc.module.axon">module axon</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PubEmitterSocket" id="apidoc.element.axon.PubEmitterSocket">
+        function <span class="apidocSignatureSpan">axon.</span>PubEmitterSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PubEmitterSocket() {
+  this.sock = new PubSocket;
+  this.emit = this.sock.send.bind(this.sock);
+  this.bind = this.sock.bind.bind(this.sock);
+  this.connect = this.sock.connect.bind(this.sock);
+  this.close = this.sock.close.bind(this.sock);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PubSocket" id="apidoc.element.axon.PubSocket">
+        function <span class="apidocSignatureSpan">axon.</span>PubSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PubSocket() {
+  Socket.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PullSocket" id="apidoc.element.axon.PullSocket">
+        function <span class="apidocSignatureSpan">axon.</span>PullSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PullSocket() {
+  Socket.call(this);
+  // TODO: selective reception
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PushSocket" id="apidoc.element.axon.PushSocket">
+        function <span class="apidocSignatureSpan">axon.</span>PushSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PushSocket() {
+  Socket.call(this);
+  this.use(queue());
+  this.use(roundrobin({ fallback: this.enqueue }));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.RepSocket" id="apidoc.element.axon.RepSocket">
+        function <span class="apidocSignatureSpan">axon.</span>RepSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function RepSocket() {
+  Socket.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.ReqSocket" id="apidoc.element.axon.ReqSocket">
+        function <span class="apidocSignatureSpan">axon.</span>ReqSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ReqSocket() {
+  Socket.call(this);
+  this.n = 0;
+  this.ids = 0;
+  this.callbacks = {};
+  this.identity = this.get(&#x27;identity&#x27;);
+  this.use(queue());
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket" id="apidoc.element.axon.Socket">
+        function <span class="apidocSignatureSpan">axon.</span>Socket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Socket() {
+  this.server = null;
+  this.socks = [];
+  this.settings = {};
+  this.set(&#x27;hwm&#x27;, Infinity);
+  this.set(&#x27;identity&#x27;, String(process.pid));
+  this.set(&#x27;retry timeout&#x27;, 100);
+  this.set(&#x27;retry max timeout&#x27;, 5000);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubEmitterSocket" id="apidoc.element.axon.SubEmitterSocket">
+        function <span class="apidocSignatureSpan">axon.</span>SubEmitterSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SubEmitterSocket() {
+  this.sock = new SubSocket;
+  this.sock.onmessage = this.onmessage.bind(this);
+  this.bind = this.sock.bind.bind(this.sock);
+  this.connect = this.sock.connect.bind(this.sock);
+  this.close = this.sock.close.bind(this.sock);
+  this.listeners = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket" id="apidoc.element.axon.SubSocket">
+        function <span class="apidocSignatureSpan">axon.</span>SubSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SubSocket() {
+  Socket.call(this);
+  this.subscriptions = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.socket" id="apidoc.element.axon.socket">
+        function <span class="apidocSignatureSpan">axon.</span>socket
+        <span class="apidocSignatureSpan">(type, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">socket = function (type, options){
+  var fn = exports.types[type];
+  if (!fn) throw new Error(&#x27;invalid socket type &#x22;&#x27; + type + &#x27;&#x22;&#x27;);
+  return new fn(options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Push / Pull
+
+`PushSocket`s distribute messages round-robin:
+
+```js
+var axon = require(&#x27;axon&#x27;);
+var sock = axon.<span class="apidocCodeKeywordSpan">socket</span>(&#x27;push&#x27;);
+
+sock.bind(3000);
+console.log(&#x27;push server started&#x27;);
+
+setInterval(function(){
+  sock.send(&#x27;hello&#x27;);
+}, 150);
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.PubSocket" id="apidoc.module.axon.PubSocket">module axon.PubSocket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PubSocket.PubSocket" id="apidoc.element.axon.PubSocket.PubSocket">
+        function <span class="apidocSignatureSpan">axon.</span>PubSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PubSocket() {
+  Socket.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.PubSocket.prototype" id="apidoc.module.axon.PubSocket.prototype">module axon.PubSocket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PubSocket.prototype.send" id="apidoc.element.axon.PubSocket.prototype.send">
+        function <span class="apidocSignatureSpan">axon.PubSocket.prototype.</span>send
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">send = function (msg){
+  var socks = this.socks;
+  var len = socks.length;
+  var sock;
+
+  var buf = this.pack(arguments);
+
+  for (var i = 0; i &#x3c; len; i++) {
+    sock = socks[i];
+    if (sock.writable) sock.write(buf);
+  }
+
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Mixed argument types
+
+  Backed by [node-amp-message](https://github.com/tj/node-amp-message)
+  you may pass strings, objects, and buffers as arguments.
+
+```js
+push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
+pull.on(&#x27;message&#x27;, function(type, size, img){});
+```
+
+## Push / Pull
+
+`PushSocket`s distribute messages round-robin:
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.PullSocket" id="apidoc.module.axon.PullSocket">module axon.PullSocket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PullSocket.PullSocket" id="apidoc.element.axon.PullSocket.PullSocket">
+        function <span class="apidocSignatureSpan">axon.</span>PullSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PullSocket() {
+  Socket.call(this);
+  // TODO: selective reception
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.PullSocket.prototype" id="apidoc.module.axon.PullSocket.prototype">module axon.PullSocket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.PullSocket.prototype.send" id="apidoc.element.axon.PullSocket.prototype.send">
+        function <span class="apidocSignatureSpan">axon.PullSocket.prototype.</span>send
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">send = function (){
+  throw new Error(&#x27;pull sockets should not send messages&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Mixed argument types
+
+  Backed by [node-amp-message](https://github.com/tj/node-amp-message)
+  you may pass strings, objects, and buffers as arguments.
+
+```js
+push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
+pull.on(&#x27;message&#x27;, function(type, size, img){});
+```
+
+## Push / Pull
+
+`PushSocket`s distribute messages round-robin:
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.RepSocket" id="apidoc.module.axon.RepSocket">module axon.RepSocket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.RepSocket.RepSocket" id="apidoc.element.axon.RepSocket.RepSocket">
+        function <span class="apidocSignatureSpan">axon.</span>RepSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function RepSocket() {
+  Socket.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.RepSocket.prototype" id="apidoc.module.axon.RepSocket.prototype">module axon.RepSocket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.RepSocket.prototype.onmessage" id="apidoc.element.axon.RepSocket.prototype.onmessage">
+        function <span class="apidocSignatureSpan">axon.RepSocket.prototype.</span>onmessage
+        <span class="apidocSignatureSpan">(sock)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onmessage = function (sock){
+  var self = this;
+
+  return function (buf){
+    var msg = new Message(buf);
+    var args = msg.args;
+
+    var id = args.pop();
+    args.unshift(&#x27;message&#x27;);
+    args.push(reply);
+    self.emit.apply(self, args);
+
+    function reply() {
+      var fn = function(){};
+      var args = slice(arguments);
+      args[0] = args[0] || null;
+
+      var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+      if (hasCallback) fn = args.pop();
+
+      args.push(id);
+
+      if (sock.writable) {
+        sock.write(self.pack(args), function(){ fn(true) });
+        return true;
+      } else {
+        debug(&#x27;peer went away&#x27;);
+        process.nextTick(function(){ fn(false) });
+        return false;
+      }
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.ReqSocket" id="apidoc.module.axon.ReqSocket">module axon.ReqSocket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.ReqSocket.ReqSocket" id="apidoc.element.axon.ReqSocket.ReqSocket">
+        function <span class="apidocSignatureSpan">axon.</span>ReqSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ReqSocket() {
+  Socket.call(this);
+  this.n = 0;
+  this.ids = 0;
+  this.callbacks = {};
+  this.identity = this.get(&#x27;identity&#x27;);
+  this.use(queue());
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.ReqSocket.prototype" id="apidoc.module.axon.ReqSocket.prototype">module axon.ReqSocket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.ReqSocket.prototype.id" id="apidoc.element.axon.ReqSocket.prototype.id">
+        function <span class="apidocSignatureSpan">axon.ReqSocket.prototype.</span>id
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">id = function (){
+  return this.identity + &#x27;:&#x27; + this.ids++;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.ReqSocket.prototype.onmessage" id="apidoc.element.axon.ReqSocket.prototype.onmessage">
+        function <span class="apidocSignatureSpan">axon.ReqSocket.prototype.</span>onmessage
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onmessage = function (){
+  var self = this;
+  return function(buf){
+    var msg = new Message(buf);
+    var id = msg.pop();
+    var fn = self.callbacks[id];
+    if (!fn) return debug(&#x27;missing callback %s&#x27;, id);
+    fn.apply(null, msg.args);
+    delete self.callbacks[id];
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.ReqSocket.prototype.send" id="apidoc.element.axon.ReqSocket.prototype.send">
+        function <span class="apidocSignatureSpan">axon.ReqSocket.prototype.</span>send
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">send = function (msg){
+  var socks = this.socks;
+  var len = socks.length;
+  var sock = socks[this.n++ % len];
+  var args = slice(arguments);
+
+  if (sock) {
+    var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+    if (!hasCallback) args.push(function(){});
+    var fn = args.pop();
+    fn.id = this.id();
+    this.callbacks[fn.id] = fn;
+    args.push(fn.id);
+  }
+
+  if (sock) {
+    sock.write(this.pack(args));
+  } else {
+    debug(&#x27;no connected peers&#x27;);
+    this.enqueue(args);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Mixed argument types
+
+  Backed by [node-amp-message](https://github.com/tj/node-amp-message)
+  you may pass strings, objects, and buffers as arguments.
+
+```js
+push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
+pull.on(&#x27;message&#x27;, function(type, size, img){});
+```
+
+## Push / Pull
+
+`PushSocket`s distribute messages round-robin:
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.Socket" id="apidoc.module.axon.Socket">module axon.Socket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.Socket" id="apidoc.element.axon.Socket.Socket">
+        function <span class="apidocSignatureSpan">axon.</span>Socket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Socket() {
+  this.server = null;
+  this.socks = [];
+  this.settings = {};
+  this.set(&#x27;hwm&#x27;, Infinity);
+  this.set(&#x27;identity&#x27;, String(process.pid));
+  this.set(&#x27;retry timeout&#x27;, 100);
+  this.set(&#x27;retry max timeout&#x27;, 5000);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.Socket.prototype" id="apidoc.module.axon.Socket.prototype">module axon.Socket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.addSocket" id="apidoc.element.axon.Socket.prototype.addSocket">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>addSocket
+        <span class="apidocSignatureSpan">(sock)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addSocket = function (sock){
+  var parser = new Parser;
+  var i = this.socks.push(sock) - 1;
+  debug(&#x27;%s add socket %d&#x27;, this.type, i);
+  sock.pipe(parser);
+  parser.on(&#x27;data&#x27;, this.onmessage(sock));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.address" id="apidoc.element.axon.Socket.prototype.address">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>address
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">address = function (){
+  if (!this.server) return;
+  var addr = this.server.address();
+  addr.string = &#x27;tcp://&#x27; + addr.address + &#x27;:&#x27; + addr.port;
+  return addr;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.bind" id="apidoc.element.axon.Socket.prototype.bind">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>bind
+        <span class="apidocSignatureSpan">(port, host, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bind = function (port, host, fn){
+  var self = this;
+  if (&#x27;client&#x27; == this.type) throw new Error(&#x27;cannot bind() after connect()&#x27;);
+  if (&#x27;function&#x27; == typeof host) {
+    fn = host;
+    host = undefined;
+  }
+
+  var unixSocket = false;
+
+  if (&#x27;string&#x27; == typeof port) {
+    port = url.parse(port);
+
+    if (&#x27;unix:&#x27; == port.protocol) {
+      host = fn;
+      fn = undefined;
+      port = port.pathname;
+      unixSocket = true;
+    } else {
+      host = port.hostname || &#x27;0.0.0.0&#x27;;
+      port = parseInt(port.port, 10);
+    }
+  } else {
+    host = host || &#x27;0.0.0.0&#x27;;
+  }
+
+  this.type = &#x27;server&#x27;;
+
+  this.server = net.createServer(this.onconnect.bind(this));
+
+  debug(&#x27;%s bind %s:%s&#x27;, this.type, host, port);
+  this.server.on(&#x27;listening&#x27;, this.emit.bind(this, &#x27;bind&#x27;));
+
+  if (unixSocket) {
+    // TODO: move out
+    this.server.on(&#x27;error&#x27;, function(e) {
+      if (e.code == &#x27;EADDRINUSE&#x27;) {
+        // Unix file socket and error EADDRINUSE is the case if
+        // the file socket exists. We check if other processes
+        // listen on file socket, otherwise it is a stale socket
+        // that we could reopen
+        // We try to connect to socket via plain network socket
+        var clientSocket = new net.Socket();
+
+        clientSocket.on(&#x27;error&#x27;, function(e2) {
+          if (e2.code == &#x27;ECONNREFUSED&#x27;) {
+            // No other server listening, so we can delete stale
+            // socket file and reopen server socket
+            fs.unlink(port);
+            self.server.listen(port, host, fn);
+          }
+        });
+
+        clientSocket.connect({path: port}, function() {
+          // Connection is possible, so other server is listening
+          // on this file socket
+          throw e;
+        });
+      }
+    });
+  }
+
+  this.server.listen(port, host, fn);
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+`PushSocket`s distribute messages round-robin:
+
+```js
+var axon = require(&#x27;axon&#x27;);
+var sock = axon.socket(&#x27;push&#x27;);
+
+sock.<span class="apidocCodeKeywordSpan">bind</span>(3000);
+console.log(&#x27;push server started&#x27;);
+
+setInterval(function(){
+  sock.send(&#x27;hello&#x27;);
+}, 150);
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.close" id="apidoc.element.axon.Socket.prototype.close">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>close
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">close = function (fn){
+  debug(&#x27;%s closing&#x27;, this.type);
+  this.closing = true;
+  this.closeSockets();
+  if (this.server) this.closeServer(fn);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.closeServer" id="apidoc.element.axon.Socket.prototype.closeServer">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>closeServer
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">closeServer = function (fn){
+  debug(&#x27;%s closing server&#x27;, this.type);
+  this.server.on(&#x27;close&#x27;, this.emit.bind(this, &#x27;close&#x27;));
+  this.server.close();
+  fn &#x26;&#x26; fn();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.closeSockets" id="apidoc.element.axon.Socket.prototype.closeSockets">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>closeSockets
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">closeSockets = function (){
+  debug(&#x27;%s closing %d connections&#x27;, this.type, this.socks.length);
+  this.socks.forEach(function(sock){
+    sock.destroy();
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.connect" id="apidoc.element.axon.Socket.prototype.connect">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>connect
+        <span class="apidocSignatureSpan">(port, host, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connect = function (port, host, fn){
+  var self = this;
+  if (&#x27;server&#x27; == this.type) throw new Error(&#x27;cannot connect() after bind()&#x27;);
+  if (&#x27;function&#x27; == typeof host) {
+    fn = host;
+    host = undefined;
+  }
+
+  if (&#x27;string&#x27; == typeof port) {
+    port = url.parse(port);
+
+    if (port.protocol == &#x22;unix:&#x22;) {
+      host = fn;
+      fn = undefined;
+      port = port.pathname;
+    } else {
+      host = port.hostname || &#x27;0.0.0.0&#x27;;
+      port = parseInt(port.port, 10);
+    }
+  } else {
+    host = host || &#x27;0.0.0.0&#x27;;
+  }
+
+  var max = self.get(&#x27;retry max timeout&#x27;);
+  var sock = new net.Socket;
+  sock.setNoDelay();
+  this.type = &#x27;client&#x27;;
+
+  this.handleErrors(sock);
+
+  sock.on(&#x27;close&#x27;, function(){
+    self.emit(&#x27;socket close&#x27;, sock);
+    self.connected = false;
+    self.removeSocket(sock);
+    if (self.closing) return self.emit(&#x27;close&#x27;);
+    var retry = self.retry || self.get(&#x27;retry timeout&#x27;);
+    setTimeout(function(){
+      debug(&#x27;%s attempting reconnect&#x27;, self.type);
+      self.emit(&#x27;reconnect attempt&#x27;);
+      sock.destroy();
+      self.connect(port, host);
+      self.retry = Math.round(Math.min(max, retry * 1.5));
+    }, retry);
+  });
+
+  sock.on(&#x27;connect&#x27;, function(){
+    debug(&#x27;%s connect&#x27;, self.type);
+    self.connected = true;
+    self.addSocket(sock);
+    self.retry = self.get(&#x27;retry timeout&#x27;);
+    self.emit(&#x27;connect&#x27;, sock);
+    fn &#x26;&#x26; fn();
+  });
+
+  debug(&#x27;%s connect attempt %s:%s&#x27;, self.type, host, port);
+  sock.connect(port, host);
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Receiver of `PushSocket` messages:
+
+```js
+var axon = require(&#x27;axon&#x27;);
+var sock = axon.socket(&#x27;pull&#x27;);
+
+sock.<span class="apidocCodeKeywordSpan">connect</span>(3000);
+
+sock.on(&#x27;message&#x27;, function(msg){
+  console.log(msg.toString());
+});
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.disable" id="apidoc.element.axon.Socket.prototype.disable">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>disable
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">disable = function (name){
+  return this.set(name, false);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.disabled" id="apidoc.element.axon.Socket.prototype.disabled">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>disabled
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">disabled = function (name){
+  return ! this.get(name);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.enable" id="apidoc.element.axon.Socket.prototype.enable">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>enable
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">enable = function (name){
+  return this.set(name, true);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.enabled" id="apidoc.element.axon.Socket.prototype.enabled">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>enabled
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">enabled = function (name){
+  return !! this.get(name);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.get" id="apidoc.element.axon.Socket.prototype.get">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>get
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (name){
+  return this.settings[name];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.handleErrors" id="apidoc.element.axon.Socket.prototype.handleErrors">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>handleErrors
+        <span class="apidocSignatureSpan">(sock)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">handleErrors = function (sock){
+  var self = this;
+  sock.on(&#x27;error&#x27;, function(err){
+    debug(&#x27;%s error %s&#x27;, self.type, err.code || err.message);
+    self.emit(&#x27;socket error&#x27;, err);
+    self.removeSocket(sock);
+    if (!~ignore.indexOf(err.code)) return self.emit(&#x27;error&#x27;, err);
+    debug(&#x27;%s ignored %s&#x27;, self.type, err.code);
+    self.emit(&#x27;ignored error&#x27;, err);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.onconnect" id="apidoc.element.axon.Socket.prototype.onconnect">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>onconnect
+        <span class="apidocSignatureSpan">(sock)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onconnect = function (sock){
+  var self = this;
+  var addr = sock.remoteAddress + &#x27;:&#x27; + sock.remotePort;
+  debug(&#x27;%s accept %s&#x27;, self.type, addr);
+  this.addSocket(sock);
+  this.handleErrors(sock);
+  this.emit(&#x27;connect&#x27;, sock);
+  sock.on(&#x27;close&#x27;, function(){
+    debug(&#x27;%s disconnect %s&#x27;, self.type, addr);
+    self.emit(&#x27;disconnect&#x27;, sock);
+    self.removeSocket(sock);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.onmessage" id="apidoc.element.axon.Socket.prototype.onmessage">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>onmessage
+        <span class="apidocSignatureSpan">(sock)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onmessage = function (sock){
+  var self = this;
+  return function(buf){
+    var msg = new Message(buf);
+    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.pack" id="apidoc.element.axon.Socket.prototype.pack">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>pack
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">pack = function (args){
+  var msg = new Message(args);
+  return msg.toBuffer();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.removeSocket" id="apidoc.element.axon.Socket.prototype.removeSocket">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>removeSocket
+        <span class="apidocSignatureSpan">(sock)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">removeSocket = function (sock){
+  var i = this.socks.indexOf(sock);
+  if (!~i) return;
+  debug(&#x27;%s remove socket %d&#x27;, this.type, i);
+  this.socks.splice(i, 1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.set" id="apidoc.element.axon.Socket.prototype.set">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>set
+        <span class="apidocSignatureSpan">(name, val)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">set = function (name, val){
+  if (1 == arguments.length) {
+    for (var key in name) {
+      this.set(key, name[key]);
+    }
+  } else {
+    this.settings[name] = val;
+  }
+
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.Socket.prototype.use" id="apidoc.element.axon.Socket.prototype.use">
+        function <span class="apidocSignatureSpan">axon.Socket.prototype.</span>use
+        <span class="apidocSignatureSpan">(plugin)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">use = function (plugin){
+  plugin(this);
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.SubEmitterSocket" id="apidoc.module.axon.SubEmitterSocket">module axon.SubEmitterSocket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubEmitterSocket.SubEmitterSocket" id="apidoc.element.axon.SubEmitterSocket.SubEmitterSocket">
+        function <span class="apidocSignatureSpan">axon.</span>SubEmitterSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SubEmitterSocket() {
+  this.sock = new SubSocket;
+  this.sock.onmessage = this.onmessage.bind(this);
+  this.bind = this.sock.bind.bind(this.sock);
+  this.connect = this.sock.connect.bind(this.sock);
+  this.close = this.sock.close.bind(this.sock);
+  this.listeners = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.SubEmitterSocket.prototype" id="apidoc.module.axon.SubEmitterSocket.prototype">module axon.SubEmitterSocket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubEmitterSocket.prototype.off" id="apidoc.element.axon.SubEmitterSocket.prototype.off">
+        function <span class="apidocSignatureSpan">axon.SubEmitterSocket.prototype.</span>off
+        <span class="apidocSignatureSpan">(event)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">off = function (event){
+  for (var i = 0; i &#x3c; this.listeners.length; ++i) {
+    if (this.listeners[i].event === event) {
+      this.sock.unsubscribe(this.listeners[i].re);
+      this.listeners.splice(i--, 1);
+    }
+  }
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubEmitterSocket.prototype.on" id="apidoc.element.axon.SubEmitterSocket.prototype.on">
+        function <span class="apidocSignatureSpan">axon.SubEmitterSocket.prototype.</span>on
+        <span class="apidocSignatureSpan">(event, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">on = function (event, fn){
+  var re = this.sock.subscribe(event);
+  this.listeners.push({
+    event: event,
+    re: re,
+    fn: fn
+  });
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+## Mixed argument types
+
+  Backed by [node-amp-message](https://github.com/tj/node-amp-message)
+  you may pass strings, objects, and buffers as arguments.
+
+```js
+push.send(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
+pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function(type, size, img){});
+```
+
+## Push / Pull
+
+`PushSocket`s distribute messages round-robin:
+
+```js
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubEmitterSocket.prototype.onmessage" id="apidoc.element.axon.SubEmitterSocket.prototype.onmessage">
+        function <span class="apidocSignatureSpan">axon.SubEmitterSocket.prototype.</span>onmessage
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onmessage = function (){
+  var listeners = this.listeners;
+  var self = this;
+
+  return function(buf){
+    var msg = new Message(buf);
+    var topic = msg.shift();
+
+    for (var i = 0; i &#x3c; listeners.length; ++i) {
+      var listener = listeners[i];
+
+      var m = listener.re.exec(topic);
+      if (!m) continue;
+
+      listener.fn.apply(self, m.slice(1).concat(msg.args));
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.SubSocket" id="apidoc.module.axon.SubSocket">module axon.SubSocket</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.SubSocket" id="apidoc.element.axon.SubSocket.SubSocket">
+        function <span class="apidocSignatureSpan">axon.</span>SubSocket
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SubSocket() {
+  Socket.call(this);
+  this.subscriptions = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.SubSocket.prototype" id="apidoc.module.axon.SubSocket.prototype">module axon.SubSocket.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.prototype.clearSubscriptions" id="apidoc.element.axon.SubSocket.prototype.clearSubscriptions">
+        function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>clearSubscriptions
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">clearSubscriptions = function (){
+  this.subscriptions = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.prototype.hasSubscriptions" id="apidoc.element.axon.SubSocket.prototype.hasSubscriptions">
+        function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>hasSubscriptions
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hasSubscriptions = function (){
+  return !! this.subscriptions.length;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.prototype.matches" id="apidoc.element.axon.SubSocket.prototype.matches">
+        function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>matches
+        <span class="apidocSignatureSpan">(topic)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">matches = function (topic){
+  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+    if (this.subscriptions[i].test(topic)) {
+      return true;
+    }
+  }
+  return false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.prototype.onmessage" id="apidoc.element.axon.SubSocket.prototype.onmessage">
+        function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>onmessage
+        <span class="apidocSignatureSpan">(sock)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onmessage = function (sock){
+  var subs = this.hasSubscriptions();
+  var self = this;
+
+  return function(buf){
+    var msg = new Message(buf);
+
+    if (subs) {
+      var topic = msg.args[0];
+      if (!self.matches(topic)) return debug(&#x27;not subscribed to &#x22;%s&#x22;&#x27;, topic);
+    }
+
+    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.prototype.send" id="apidoc.element.axon.SubSocket.prototype.send">
+        function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>send
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">send = function (){
+  throw new Error(&#x27;subscribers cannot send messages&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Mixed argument types
+
+  Backed by [node-amp-message](https://github.com/tj/node-amp-message)
+  you may pass strings, objects, and buffers as arguments.
+
+```js
+push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
+pull.on(&#x27;message&#x27;, function(type, size, img){});
+```
+
+## Push / Pull
+
+`PushSocket`s distribute messages round-robin:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.prototype.subscribe" id="apidoc.element.axon.SubSocket.prototype.subscribe">
+        function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>subscribe
+        <span class="apidocSignatureSpan">(re)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">subscribe = function (re){
+  debug(&#x27;subscribe to &#x22;%s&#x22;&#x27;, re);
+  this.subscriptions.push(re = toRegExp(re));
+  return re;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+sock.connect(3000);
+
+sock.on(&#x27;message&#x27;, function(msg){
+  console.log(msg.toString());
+});
+```
+
+ `SubSocket`s may optionally `.<span class="apidocCodeKeywordSpan">subscribe</span>()` to one or more &#x22;topics&#x22; (the first
+ multipart value),
+ using string patterns or regular expressions:
+
+```js
+var axon = require(&#x27;axon&#x27;);
+var sock = axon.socket(&#x27;sub&#x27;);
+
+sock.connect(3000);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.SubSocket.prototype.unsubscribe" id="apidoc.element.axon.SubSocket.prototype.unsubscribe">
+        function <span class="apidocSignatureSpan">axon.SubSocket.prototype.</span>unsubscribe
+        <span class="apidocSignatureSpan">(re)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unsubscribe = function (re){
+  debug(&#x27;unsubscribe from &#x22;%s&#x22;&#x27;, re);
+  re = toRegExp(re);
+  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+    if (this.subscriptions[i].toString() === re.toString()) {
+      this.subscriptions.splice(i--, 1);
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.types" id="apidoc.module.axon.types">module axon.types</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.pub" id="apidoc.element.axon.types.pub">
+        function <span class="apidocSignatureSpan">axon.types.</span>pub
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PubSocket() {
+  Socket.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.pub-emitter" id="apidoc.element.axon.types.pub-emitter">
+        function <span class="apidocSignatureSpan">axon.types.</span>pub-emitter
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PubEmitterSocket() {
+  this.sock = new PubSocket;
+  this.emit = this.sock.send.bind(this.sock);
+  this.bind = this.sock.bind.bind(this.sock);
+  this.connect = this.sock.connect.bind(this.sock);
+  this.close = this.sock.close.bind(this.sock);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.pull" id="apidoc.element.axon.types.pull">
+        function <span class="apidocSignatureSpan">axon.types.</span>pull
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PullSocket() {
+  Socket.call(this);
+  // TODO: selective reception
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.push" id="apidoc.element.axon.types.push">
+        function <span class="apidocSignatureSpan">axon.types.</span>push
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PushSocket() {
+  Socket.call(this);
+  this.use(queue());
+  this.use(roundrobin({ fallback: this.enqueue }));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.rep" id="apidoc.element.axon.types.rep">
+        function <span class="apidocSignatureSpan">axon.types.</span>rep
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function RepSocket() {
+  Socket.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.req" id="apidoc.element.axon.types.req">
+        function <span class="apidocSignatureSpan">axon.types.</span>req
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ReqSocket() {
+  Socket.call(this);
+  this.n = 0;
+  this.ids = 0;
+  this.callbacks = {};
+  this.identity = this.get(&#x27;identity&#x27;);
+  this.use(queue());
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.sub" id="apidoc.element.axon.types.sub">
+        function <span class="apidocSignatureSpan">axon.types.</span>sub
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SubSocket() {
+  Socket.call(this);
+  this.subscriptions = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.axon.types.sub-emitter" id="apidoc.element.axon.types.sub-emitter">
+        function <span class="apidocSignatureSpan">axon.types.</span>sub-emitter
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SubEmitterSocket() {
+  this.sock = new SubSocket;
+  this.sock.onmessage = this.onmessage.bind(this);
+  this.bind = this.sock.bind.bind(this.sock);
+  this.connect = this.sock.connect.bind(this.sock);
+  this.close = this.sock.close.bind(this.sock);
+  this.listeners = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.axon.utils" id="apidoc.module.axon.utils">module axon.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.axon.utils.slice" id="apidoc.element.axon.utils.slice">
+        function <span class="apidocSignatureSpan">axon.utils.</span>slice
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">slice = function (args){
+  var len = args.length;
+  var ret = new Array(len);
+
+  for (var i = 0; i &#x3c; len; i++) {
+    ret[i] = args[i];
+  }
+
+  return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
