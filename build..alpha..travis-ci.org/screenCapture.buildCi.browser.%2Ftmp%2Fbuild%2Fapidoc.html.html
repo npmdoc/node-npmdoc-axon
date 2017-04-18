@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/visionmedia/axon#readme"
-
-    >axon (v2.0.3)</a>
+    <a href="https://github.com/visionmedia/axon#readme">axon (v2.0.3)</a>
 </h1>
-<h4>High-level messaging & socket patterns implemented in pure js</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<h4>High-level messaging &amp; socket patterns implemented in pure js</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.axon">module axon</a><ol>
 
@@ -1599,7 +1592,7 @@
 
   var buf = this.pack(arguments);
 
-  for (var i = 0; i &#x3c; len; i++) {
+  for (var i = 0; i &lt; len; i++) {
     sock = socks[i];
     if (sock.writable) sock.write(buf);
   }
@@ -1635,7 +1628,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">PullSocket.prototype.send = function (){
-  throw new Error(&#x27;pull sockets should not send messages&#x27;);
+  throw new Error('pull sockets should not send messages');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1689,7 +1682,7 @@
     var args = msg.args;
 
     var id = args.pop();
-    args.unshift(&#x27;message&#x27;);
+    args.unshift('message');
     args.push(reply);
     self.emit.apply(self, args);
 
@@ -1698,7 +1691,7 @@
       var args = slice(arguments);
       args[0] = args[0] || null;
 
-      var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+      var hasCallback = 'function' == typeof args[args.length - 1];
       if (hasCallback) fn = args.pop();
 
       args.push(id);
@@ -1707,7 +1700,7 @@
         sock.write(self.pack(args), function(){ fn(true) });
         return true;
       } else {
-        debug(&#x27;peer went away&#x27;);
+        debug('peer went away');
         process.nextTick(function(){ fn(false) });
         return false;
       }
@@ -1731,7 +1724,7 @@
   this.n = 0;
   this.ids = 0;
   this.callbacks = {};
-  this.identity = this.get(&#x27;identity&#x27;);
+  this.identity = this.get('identity');
   this.use(queue());
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1747,7 +1740,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">ReqSocket.prototype.id = function (){
-  return this.identity + &#x27;:&#x27; + this.ids++;
+  return this.identity + ':' + this.ids++;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1767,7 +1760,7 @@
     var msg = new Message(buf);
     var id = msg.pop();
     var fn = self.callbacks[id];
-    if (!fn) return debug(&#x27;missing callback %s&#x27;, id);
+    if (!fn) return debug('missing callback %s', id);
     fn.apply(null, msg.args);
     delete self.callbacks[id];
   };
@@ -1791,7 +1784,7 @@
   var args = slice(arguments);
 
   if (sock) {
-    var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+    var hasCallback = 'function' == typeof args[args.length - 1];
     if (!hasCallback) args.push(function(){});
     var fn = args.pop();
     fn.id = this.id();
@@ -1802,7 +1795,7 @@
   if (sock) {
     sock.write(this.pack(args));
   } else {
-    debug(&#x27;no connected peers&#x27;);
+    debug('no connected peers');
     this.enqueue(args);
   }
 }</pre></li>
@@ -1822,10 +1815,10 @@
   this.server = null;
   this.socks = [];
   this.settings = {};
-  this.set(&#x27;hwm&#x27;, Infinity);
-  this.set(&#x27;identity&#x27;, String(process.pid));
-  this.set(&#x27;retry timeout&#x27;, 100);
-  this.set(&#x27;retry max timeout&#x27;, 5000);
+  this.set('hwm', Infinity);
+  this.set('identity', String(process.pid));
+  this.set('retry timeout', 100);
+  this.set('retry max timeout', 5000);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1842,9 +1835,9 @@
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.addSocket = function (sock){
   var parser = new Parser;
   var i = this.socks.push(sock) - 1;
-  debug(&#x27;%s add socket %d&#x27;, this.type, i);
+  debug('%s add socket %d', this.type, i);
   sock.pipe(parser);
-  parser.on(&#x27;data&#x27;, this.onmessage(sock));
+  parser.on('data', this.onmessage(sock));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1861,7 +1854,7 @@
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.address = function (){
   if (!this.server) return;
   var addr = this.server.address();
-  addr.string = &#x27;tcp://&#x27; + addr.address + &#x27;:&#x27; + addr.port;
+  addr.string = 'tcp://' + addr.address + ':' + addr.port;
   return addr;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1878,41 +1871,41 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.bind = function (port, host, fn){
   var self = this;
-  if (&#x27;client&#x27; == this.type) throw new Error(&#x27;cannot bind() after connect()&#x27;);
-  if (&#x27;function&#x27; == typeof host) {
+  if ('client' == this.type) throw new Error('cannot bind() after connect()');
+  if ('function' == typeof host) {
     fn = host;
     host = undefined;
   }
 
   var unixSocket = false;
 
-  if (&#x27;string&#x27; == typeof port) {
+  if ('string' == typeof port) {
     port = url.parse(port);
 
-    if (&#x27;unix:&#x27; == port.protocol) {
+    if ('unix:' == port.protocol) {
       host = fn;
       fn = undefined;
       port = port.pathname;
       unixSocket = true;
     } else {
-      host = port.hostname || &#x27;0.0.0.0&#x27;;
+      host = port.hostname || '0.0.0.0';
       port = parseInt(port.port, 10);
     }
   } else {
-    host = host || &#x27;0.0.0.0&#x27;;
+    host = host || '0.0.0.0';
   }
 
-  this.type = &#x27;server&#x27;;
+  this.type = 'server';
 
   this.server = net.createServer(this.onconnect.bind(this));
 
-  debug(&#x27;%s bind %s:%s&#x27;, this.type, host, port);
-  this.server.on(&#x27;listening&#x27;, this.emit.bind(this, &#x27;bind&#x27;));
+  debug('%s bind %s:%s', this.type, host, port);
+  this.server.on('listening', this.emit.bind(this, 'bind'));
 
   if (unixSocket) {
     // TODO: move out
-    this.server.on(&#x27;error&#x27;, function(e) {
-      if (e.code == &#x27;EADDRINUSE&#x27;) {
+    this.server.on('error', function(e) {
+      if (e.code == 'EADDRINUSE') {
         // Unix file socket and error EADDRINUSE is the case if
         // the file socket exists. We check if other processes
         // listen on file socket, otherwise it is a stale socket
@@ -1920,8 +1913,8 @@
         // We try to connect to socket via plain network socket
         var clientSocket = new net.Socket();
 
-        clientSocket.on(&#x27;error&#x27;, function(e2) {
-          if (e2.code == &#x27;ECONNREFUSED&#x27;) {
+        clientSocket.on('error', function(e2) {
+          if (e2.code == 'ECONNREFUSED') {
             // No other server listening, so we can delete stale
             // socket file and reopen server socket
             fs.unlink(port);
@@ -1954,7 +1947,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.close = function (fn){
-  debug(&#x27;%s closing&#x27;, this.type);
+  debug('%s closing', this.type);
   this.closing = true;
   this.closeSockets();
   if (this.server) this.closeServer(fn);
@@ -1972,10 +1965,10 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.closeServer = function (fn){
-  debug(&#x27;%s closing server&#x27;, this.type);
-  this.server.on(&#x27;close&#x27;, this.emit.bind(this, &#x27;close&#x27;));
+  debug('%s closing server', this.type);
+  this.server.on('close', this.emit.bind(this, 'close'));
   this.server.close();
-  fn &#x26;&#x26; fn();
+  fn &amp;&amp; fn();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1990,7 +1983,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.closeSockets = function (){
-  debug(&#x27;%s closing %d connections&#x27;, this.type, this.socks.length);
+  debug('%s closing %d connections', this.type, this.socks.length);
   this.socks.forEach(function(sock){
     sock.destroy();
   });
@@ -2009,59 +2002,59 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.connect = function (port, host, fn){
   var self = this;
-  if (&#x27;server&#x27; == this.type) throw new Error(&#x27;cannot connect() after bind()&#x27;);
-  if (&#x27;function&#x27; == typeof host) {
+  if ('server' == this.type) throw new Error('cannot connect() after bind()');
+  if ('function' == typeof host) {
     fn = host;
     host = undefined;
   }
 
-  if (&#x27;string&#x27; == typeof port) {
+  if ('string' == typeof port) {
     port = url.parse(port);
 
-    if (port.protocol == &#x22;unix:&#x22;) {
+    if (port.protocol == "unix:") {
       host = fn;
       fn = undefined;
       port = port.pathname;
     } else {
-      host = port.hostname || &#x27;0.0.0.0&#x27;;
+      host = port.hostname || '0.0.0.0';
       port = parseInt(port.port, 10);
     }
   } else {
-    host = host || &#x27;0.0.0.0&#x27;;
+    host = host || '0.0.0.0';
   }
 
-  var max = self.get(&#x27;retry max timeout&#x27;);
+  var max = self.get('retry max timeout');
   var sock = new net.Socket;
   sock.setNoDelay();
-  this.type = &#x27;client&#x27;;
+  this.type = 'client';
 
   this.handleErrors(sock);
 
-  sock.on(&#x27;close&#x27;, function(){
-    self.emit(&#x27;socket close&#x27;, sock);
+  sock.on('close', function(){
+    self.emit('socket close', sock);
     self.connected = false;
     self.removeSocket(sock);
-    if (self.closing) return self.emit(&#x27;close&#x27;);
-    var retry = self.retry || self.get(&#x27;retry timeout&#x27;);
+    if (self.closing) return self.emit('close');
+    var retry = self.retry || self.get('retry timeout');
     setTimeout(function(){
-      debug(&#x27;%s attempting reconnect&#x27;, self.type);
-      self.emit(&#x27;reconnect attempt&#x27;);
+      debug('%s attempting reconnect', self.type);
+      self.emit('reconnect attempt');
       sock.destroy();
       self.connect(port, host);
       self.retry = Math.round(Math.min(max, retry * 1.5));
     }, retry);
   });
 
-  sock.on(&#x27;connect&#x27;, function(){
-    debug(&#x27;%s connect&#x27;, self.type);
+  sock.on('connect', function(){
+    debug('%s connect', self.type);
     self.connected = true;
     self.addSocket(sock);
-    self.retry = self.get(&#x27;retry timeout&#x27;);
-    self.emit(&#x27;connect&#x27;, sock);
-    fn &#x26;&#x26; fn();
+    self.retry = self.get('retry timeout');
+    self.emit('connect', sock);
+    fn &amp;&amp; fn();
   });
 
-  debug(&#x27;%s connect attempt %s:%s&#x27;, self.type, host, port);
+  debug('%s connect attempt %s:%s', self.type, host, port);
   sock.connect(port, host);
   return this;
 }</pre></li>
@@ -2154,13 +2147,13 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.handleErrors = function (sock){
   var self = this;
-  sock.on(&#x27;error&#x27;, function(err){
-    debug(&#x27;%s error %s&#x27;, self.type, err.code || err.message);
-    self.emit(&#x27;socket error&#x27;, err);
+  sock.on('error', function(err){
+    debug('%s error %s', self.type, err.code || err.message);
+    self.emit('socket error', err);
     self.removeSocket(sock);
-    if (!~ignore.indexOf(err.code)) return self.emit(&#x27;error&#x27;, err);
-    debug(&#x27;%s ignored %s&#x27;, self.type, err.code);
-    self.emit(&#x27;ignored error&#x27;, err);
+    if (!~ignore.indexOf(err.code)) return self.emit('error', err);
+    debug('%s ignored %s', self.type, err.code);
+    self.emit('ignored error', err);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2177,14 +2170,14 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.onconnect = function (sock){
   var self = this;
-  var addr = sock.remoteAddress + &#x27;:&#x27; + sock.remotePort;
-  debug(&#x27;%s accept %s&#x27;, self.type, addr);
+  var addr = sock.remoteAddress + ':' + sock.remotePort;
+  debug('%s accept %s', self.type, addr);
   this.addSocket(sock);
   this.handleErrors(sock);
-  this.emit(&#x27;connect&#x27;, sock);
-  sock.on(&#x27;close&#x27;, function(){
-    debug(&#x27;%s disconnect %s&#x27;, self.type, addr);
-    self.emit(&#x27;disconnect&#x27;, sock);
+  this.emit('connect', sock);
+  sock.on('close', function(){
+    debug('%s disconnect %s', self.type, addr);
+    self.emit('disconnect', sock);
     self.removeSocket(sock);
   });
 }</pre></li>
@@ -2204,7 +2197,7 @@
   var self = this;
   return function(buf){
     var msg = new Message(buf);
-    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+    self.emit.apply(self, ['message'].concat(msg.args));
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2238,7 +2231,7 @@
     <li>description and source-code<pre class="apidocCodePre">Socket.prototype.removeSocket = function (sock){
   var i = this.socks.indexOf(sock);
   if (!~i) return;
-  debug(&#x27;%s remove socket %d&#x27;, this.type, i);
+  debug('%s remove socket %d', this.type, i);
   this.socks.splice(i, 1);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2313,7 +2306,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">SubEmitterSocket.prototype.off = function (event){
-  for (var i = 0; i &#x3c; this.listeners.length; ++i) {
+  for (var i = 0; i &lt; this.listeners.length; ++i) {
     if (this.listeners[i].event === event) {
       this.sock.unsubscribe(this.listeners[i].re);
       this.listeners.splice(i--, 1);
@@ -2362,7 +2355,7 @@
     var msg = new Message(buf);
     var topic = msg.shift();
 
-    for (var i = 0; i &#x3c; listeners.length; ++i) {
+    for (var i = 0; i &lt; listeners.length; ++i) {
       var listener = listeners[i];
 
       var m = listener.re.exec(topic);
@@ -2431,7 +2424,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">SubSocket.prototype.matches = function (topic){
-  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+  for (var i = 0; i &lt; this.subscriptions.length; ++i) {
     if (this.subscriptions[i].test(topic)) {
       return true;
     }
@@ -2459,10 +2452,10 @@
 
     if (subs) {
       var topic = msg.args[0];
-      if (!self.matches(topic)) return debug(&#x27;not subscribed to &#x22;%s&#x22;&#x27;, topic);
+      if (!self.matches(topic)) return debug('not subscribed to "%s"', topic);
     }
 
-    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+    self.emit.apply(self, ['message'].concat(msg.args));
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2478,7 +2471,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">SubSocket.prototype.send = function (){
-  throw new Error(&#x27;subscribers cannot send messages&#x27;);
+  throw new Error('subscribers cannot send messages');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2493,7 +2486,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">SubSocket.prototype.subscribe = function (re){
-  debug(&#x27;subscribe to &#x22;%s&#x22;&#x27;, re);
+  debug('subscribe to "%s"', re);
   this.subscriptions.push(re = toRegExp(re));
   return re;
 }</pre></li>
@@ -2510,9 +2503,9 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">SubSocket.prototype.unsubscribe = function (re){
-  debug(&#x27;unsubscribe from &#x22;%s&#x22;&#x27;, re);
+  debug('unsubscribe from "%s"', re);
   re = toRegExp(re);
-  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+  for (var i = 0; i &lt; this.subscriptions.length; ++i) {
     if (this.subscriptions[i].toString() === re.toString()) {
       this.subscriptions.splice(i--, 1);
     }
@@ -2532,7 +2525,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">socket = function (type, options){
   var fn = exports.types[type];
-  if (!fn) throw new Error(&#x27;invalid socket type &#x22;&#x27; + type + &#x27;&#x22;&#x27;);
+  if (!fn) throw new Error('invalid socket type "' + type + '"');
   return new fn(options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2542,14 +2535,14 @@
 `PushSocket`s distribute messages round-robin:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.<span class="apidocCodeKeywordSpan">socket</span>(&#x27;push&#x27;);
+var axon = require('axon');
+var sock = axon.<span class="apidocCodeKeywordSpan">socket</span>('push');
 
 sock.bind(3000);
-console.log(&#x27;push server started&#x27;);
+console.log('push server started');
 
 setInterval(function(){
-  sock.send(&#x27;hello&#x27;);
+  sock.send('hello');
 }, 150);
 ...</pre></li>
     </ul>
@@ -2637,7 +2630,7 @@ setInterval(function(){
 
   var buf = this.pack(arguments);
 
-  for (var i = 0; i &#x3c; len; i++) {
+  for (var i = 0; i &lt; len; i++) {
     sock = socks[i];
     if (sock.writable) sock.write(buf);
   }
@@ -2652,8 +2645,8 @@ setInterval(function(){
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -2683,7 +2676,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
 
   var buf = this.pack(arguments);
 
-  for (var i = 0; i &#x3c; len; i++) {
+  for (var i = 0; i &lt; len; i++) {
     sock = socks[i];
     if (sock.writable) sock.write(buf);
   }
@@ -2698,8 +2691,8 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -2744,7 +2737,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">send = function (){
-  throw new Error(&#x27;pull sockets should not send messages&#x27;);
+  throw new Error('pull sockets should not send messages');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -2754,8 +2747,8 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -2779,7 +2772,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">send = function (){
-  throw new Error(&#x27;pull sockets should not send messages&#x27;);
+  throw new Error('pull sockets should not send messages');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -2789,8 +2782,8 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -2863,7 +2856,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     var args = msg.args;
 
     var id = args.pop();
-    args.unshift(&#x27;message&#x27;);
+    args.unshift('message');
     args.push(reply);
     self.emit.apply(self, args);
 
@@ -2872,7 +2865,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
       var args = slice(arguments);
       args[0] = args[0] || null;
 
-      var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+      var hasCallback = 'function' == typeof args[args.length - 1];
       if (hasCallback) fn = args.pop();
 
       args.push(id);
@@ -2881,7 +2874,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
         sock.write(self.pack(args), function(){ fn(true) });
         return true;
       } else {
-        debug(&#x27;peer went away&#x27;);
+        debug('peer went away');
         process.nextTick(function(){ fn(false) });
         return false;
       }
@@ -2913,7 +2906,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     var args = msg.args;
 
     var id = args.pop();
-    args.unshift(&#x27;message&#x27;);
+    args.unshift('message');
     args.push(reply);
     self.emit.apply(self, args);
 
@@ -2922,7 +2915,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
       var args = slice(arguments);
       args[0] = args[0] || null;
 
-      var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+      var hasCallback = 'function' == typeof args[args.length - 1];
       if (hasCallback) fn = args.pop();
 
       args.push(id);
@@ -2931,7 +2924,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
         sock.write(self.pack(args), function(){ fn(true) });
         return true;
       } else {
-        debug(&#x27;peer went away&#x27;);
+        debug('peer went away');
         process.nextTick(function(){ fn(false) });
         return false;
       }
@@ -2960,7 +2953,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   this.n = 0;
   this.ids = 0;
   this.callbacks = {};
-  this.identity = this.get(&#x27;identity&#x27;);
+  this.identity = this.get('identity');
   this.use(queue());
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2981,7 +2974,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">id = function (){
-  return this.identity + &#x27;:&#x27; + this.ids++;
+  return this.identity + ':' + this.ids++;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3001,7 +2994,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     var msg = new Message(buf);
     var id = msg.pop();
     var fn = self.callbacks[id];
-    if (!fn) return debug(&#x27;missing callback %s&#x27;, id);
+    if (!fn) return debug('missing callback %s', id);
     fn.apply(null, msg.args);
     delete self.callbacks[id];
   };
@@ -3025,7 +3018,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   var args = slice(arguments);
 
   if (sock) {
-    var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+    var hasCallback = 'function' == typeof args[args.length - 1];
     if (!hasCallback) args.push(function(){});
     var fn = args.pop();
     fn.id = this.id();
@@ -3036,7 +3029,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   if (sock) {
     sock.write(this.pack(args));
   } else {
-    debug(&#x27;no connected peers&#x27;);
+    debug('no connected peers');
     this.enqueue(args);
   }
 }</pre></li>
@@ -3048,8 +3041,8 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -3073,7 +3066,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">id = function (){
-  return this.identity + &#x27;:&#x27; + this.ids++;
+  return this.identity + ':' + this.ids++;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3098,7 +3091,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     var msg = new Message(buf);
     var id = msg.pop();
     var fn = self.callbacks[id];
-    if (!fn) return debug(&#x27;missing callback %s&#x27;, id);
+    if (!fn) return debug('missing callback %s', id);
     fn.apply(null, msg.args);
     delete self.callbacks[id];
   };
@@ -3127,7 +3120,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   var args = slice(arguments);
 
   if (sock) {
-    var hasCallback = &#x27;function&#x27; == typeof args[args.length - 1];
+    var hasCallback = 'function' == typeof args[args.length - 1];
     if (!hasCallback) args.push(function(){});
     var fn = args.pop();
     fn.id = this.id();
@@ -3138,7 +3131,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   if (sock) {
     sock.write(this.pack(args));
   } else {
-    debug(&#x27;no connected peers&#x27;);
+    debug('no connected peers');
     this.enqueue(args);
   }
 }</pre></li>
@@ -3150,8 +3143,8 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -3178,10 +3171,10 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
   this.server = null;
   this.socks = [];
   this.settings = {};
-  this.set(&#x27;hwm&#x27;, Infinity);
-  this.set(&#x27;identity&#x27;, String(process.pid));
-  this.set(&#x27;retry timeout&#x27;, 100);
-  this.set(&#x27;retry max timeout&#x27;, 5000);
+  this.set('hwm', Infinity);
+  this.set('identity', String(process.pid));
+  this.set('retry timeout', 100);
+  this.set('retry max timeout', 5000);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3203,9 +3196,9 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     <li>description and source-code<pre class="apidocCodePre">addSocket = function (sock){
   var parser = new Parser;
   var i = this.socks.push(sock) - 1;
-  debug(&#x27;%s add socket %d&#x27;, this.type, i);
+  debug('%s add socket %d', this.type, i);
   sock.pipe(parser);
-  parser.on(&#x27;data&#x27;, this.onmessage(sock));
+  parser.on('data', this.onmessage(sock));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3222,7 +3215,7 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     <li>description and source-code<pre class="apidocCodePre">address = function (){
   if (!this.server) return;
   var addr = this.server.address();
-  addr.string = &#x27;tcp://&#x27; + addr.address + &#x27;:&#x27; + addr.port;
+  addr.string = 'tcp://' + addr.address + ':' + addr.port;
   return addr;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3239,41 +3232,41 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     <ul>
     <li>description and source-code<pre class="apidocCodePre">bind = function (port, host, fn){
   var self = this;
-  if (&#x27;client&#x27; == this.type) throw new Error(&#x27;cannot bind() after connect()&#x27;);
-  if (&#x27;function&#x27; == typeof host) {
+  if ('client' == this.type) throw new Error('cannot bind() after connect()');
+  if ('function' == typeof host) {
     fn = host;
     host = undefined;
   }
 
   var unixSocket = false;
 
-  if (&#x27;string&#x27; == typeof port) {
+  if ('string' == typeof port) {
     port = url.parse(port);
 
-    if (&#x27;unix:&#x27; == port.protocol) {
+    if ('unix:' == port.protocol) {
       host = fn;
       fn = undefined;
       port = port.pathname;
       unixSocket = true;
     } else {
-      host = port.hostname || &#x27;0.0.0.0&#x27;;
+      host = port.hostname || '0.0.0.0';
       port = parseInt(port.port, 10);
     }
   } else {
-    host = host || &#x27;0.0.0.0&#x27;;
+    host = host || '0.0.0.0';
   }
 
-  this.type = &#x27;server&#x27;;
+  this.type = 'server';
 
   this.server = net.createServer(this.onconnect.bind(this));
 
-  debug(&#x27;%s bind %s:%s&#x27;, this.type, host, port);
-  this.server.on(&#x27;listening&#x27;, this.emit.bind(this, &#x27;bind&#x27;));
+  debug('%s bind %s:%s', this.type, host, port);
+  this.server.on('listening', this.emit.bind(this, 'bind'));
 
   if (unixSocket) {
     // TODO: move out
-    this.server.on(&#x27;error&#x27;, function(e) {
-      if (e.code == &#x27;EADDRINUSE&#x27;) {
+    this.server.on('error', function(e) {
+      if (e.code == 'EADDRINUSE') {
         // Unix file socket and error EADDRINUSE is the case if
         // the file socket exists. We check if other processes
         // listen on file socket, otherwise it is a stale socket
@@ -3281,8 +3274,8 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
         // We try to connect to socket via plain network socket
         var clientSocket = new net.Socket();
 
-        clientSocket.on(&#x27;error&#x27;, function(e2) {
-          if (e2.code == &#x27;ECONNREFUSED&#x27;) {
+        clientSocket.on('error', function(e2) {
+          if (e2.code == 'ECONNREFUSED') {
             // No other server listening, so we can delete stale
             // socket file and reopen server socket
             fs.unlink(port);
@@ -3307,14 +3300,14 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
 `PushSocket`s distribute messages round-robin:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.socket(&#x27;push&#x27;);
+var axon = require('axon');
+var sock = axon.socket('push');
 
 sock.<span class="apidocCodeKeywordSpan">bind</span>(3000);
-console.log(&#x27;push server started&#x27;);
+console.log('push server started');
 
 setInterval(function(){
-  sock.send(&#x27;hello&#x27;);
+  sock.send('hello');
 }, 150);
 ```
 ...</pre></li>
@@ -3330,7 +3323,7 @@ setInterval(function(){
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">close = function (fn){
-  debug(&#x27;%s closing&#x27;, this.type);
+  debug('%s closing', this.type);
   this.closing = true;
   this.closeSockets();
   if (this.server) this.closeServer(fn);
@@ -3348,10 +3341,10 @@ setInterval(function(){
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">closeServer = function (fn){
-  debug(&#x27;%s closing server&#x27;, this.type);
-  this.server.on(&#x27;close&#x27;, this.emit.bind(this, &#x27;close&#x27;));
+  debug('%s closing server', this.type);
+  this.server.on('close', this.emit.bind(this, 'close'));
   this.server.close();
-  fn &#x26;&#x26; fn();
+  fn &amp;&amp; fn();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3366,7 +3359,7 @@ setInterval(function(){
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">closeSockets = function (){
-  debug(&#x27;%s closing %d connections&#x27;, this.type, this.socks.length);
+  debug('%s closing %d connections', this.type, this.socks.length);
   this.socks.forEach(function(sock){
     sock.destroy();
   });
@@ -3385,59 +3378,59 @@ setInterval(function(){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">connect = function (port, host, fn){
   var self = this;
-  if (&#x27;server&#x27; == this.type) throw new Error(&#x27;cannot connect() after bind()&#x27;);
-  if (&#x27;function&#x27; == typeof host) {
+  if ('server' == this.type) throw new Error('cannot connect() after bind()');
+  if ('function' == typeof host) {
     fn = host;
     host = undefined;
   }
 
-  if (&#x27;string&#x27; == typeof port) {
+  if ('string' == typeof port) {
     port = url.parse(port);
 
-    if (port.protocol == &#x22;unix:&#x22;) {
+    if (port.protocol == "unix:") {
       host = fn;
       fn = undefined;
       port = port.pathname;
     } else {
-      host = port.hostname || &#x27;0.0.0.0&#x27;;
+      host = port.hostname || '0.0.0.0';
       port = parseInt(port.port, 10);
     }
   } else {
-    host = host || &#x27;0.0.0.0&#x27;;
+    host = host || '0.0.0.0';
   }
 
-  var max = self.get(&#x27;retry max timeout&#x27;);
+  var max = self.get('retry max timeout');
   var sock = new net.Socket;
   sock.setNoDelay();
-  this.type = &#x27;client&#x27;;
+  this.type = 'client';
 
   this.handleErrors(sock);
 
-  sock.on(&#x27;close&#x27;, function(){
-    self.emit(&#x27;socket close&#x27;, sock);
+  sock.on('close', function(){
+    self.emit('socket close', sock);
     self.connected = false;
     self.removeSocket(sock);
-    if (self.closing) return self.emit(&#x27;close&#x27;);
-    var retry = self.retry || self.get(&#x27;retry timeout&#x27;);
+    if (self.closing) return self.emit('close');
+    var retry = self.retry || self.get('retry timeout');
     setTimeout(function(){
-      debug(&#x27;%s attempting reconnect&#x27;, self.type);
-      self.emit(&#x27;reconnect attempt&#x27;);
+      debug('%s attempting reconnect', self.type);
+      self.emit('reconnect attempt');
       sock.destroy();
       self.connect(port, host);
       self.retry = Math.round(Math.min(max, retry * 1.5));
     }, retry);
   });
 
-  sock.on(&#x27;connect&#x27;, function(){
-    debug(&#x27;%s connect&#x27;, self.type);
+  sock.on('connect', function(){
+    debug('%s connect', self.type);
     self.connected = true;
     self.addSocket(sock);
-    self.retry = self.get(&#x27;retry timeout&#x27;);
-    self.emit(&#x27;connect&#x27;, sock);
-    fn &#x26;&#x26; fn();
+    self.retry = self.get('retry timeout');
+    self.emit('connect', sock);
+    fn &amp;&amp; fn();
   });
 
-  debug(&#x27;%s connect attempt %s:%s&#x27;, self.type, host, port);
+  debug('%s connect attempt %s:%s', self.type, host, port);
   sock.connect(port, host);
   return this;
 }</pre></li>
@@ -3446,12 +3439,12 @@ setInterval(function(){
 Receiver of `PushSocket` messages:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.socket(&#x27;pull&#x27;);
+var axon = require('axon');
+var sock = axon.socket('pull');
 
 sock.<span class="apidocCodeKeywordSpan">connect</span>(3000);
 
-sock.on(&#x27;message&#x27;, function(msg){
+sock.on('message', function(msg){
   console.log(msg.toString());
 });
 ```
@@ -3544,13 +3537,13 @@ sock.on(&#x27;message&#x27;, function(msg){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">handleErrors = function (sock){
   var self = this;
-  sock.on(&#x27;error&#x27;, function(err){
-    debug(&#x27;%s error %s&#x27;, self.type, err.code || err.message);
-    self.emit(&#x27;socket error&#x27;, err);
+  sock.on('error', function(err){
+    debug('%s error %s', self.type, err.code || err.message);
+    self.emit('socket error', err);
     self.removeSocket(sock);
-    if (!~ignore.indexOf(err.code)) return self.emit(&#x27;error&#x27;, err);
-    debug(&#x27;%s ignored %s&#x27;, self.type, err.code);
-    self.emit(&#x27;ignored error&#x27;, err);
+    if (!~ignore.indexOf(err.code)) return self.emit('error', err);
+    debug('%s ignored %s', self.type, err.code);
+    self.emit('ignored error', err);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3567,14 +3560,14 @@ sock.on(&#x27;message&#x27;, function(msg){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">onconnect = function (sock){
   var self = this;
-  var addr = sock.remoteAddress + &#x27;:&#x27; + sock.remotePort;
-  debug(&#x27;%s accept %s&#x27;, self.type, addr);
+  var addr = sock.remoteAddress + ':' + sock.remotePort;
+  debug('%s accept %s', self.type, addr);
   this.addSocket(sock);
   this.handleErrors(sock);
-  this.emit(&#x27;connect&#x27;, sock);
-  sock.on(&#x27;close&#x27;, function(){
-    debug(&#x27;%s disconnect %s&#x27;, self.type, addr);
-    self.emit(&#x27;disconnect&#x27;, sock);
+  this.emit('connect', sock);
+  sock.on('close', function(){
+    debug('%s disconnect %s', self.type, addr);
+    self.emit('disconnect', sock);
     self.removeSocket(sock);
   });
 }</pre></li>
@@ -3594,7 +3587,7 @@ sock.on(&#x27;message&#x27;, function(msg){
   var self = this;
   return function(buf){
     var msg = new Message(buf);
-    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+    self.emit.apply(self, ['message'].concat(msg.args));
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3628,7 +3621,7 @@ sock.on(&#x27;message&#x27;, function(msg){
     <li>description and source-code<pre class="apidocCodePre">removeSocket = function (sock){
   var i = this.socks.indexOf(sock);
   if (!~i) return;
-  debug(&#x27;%s remove socket %d&#x27;, this.type, i);
+  debug('%s remove socket %d', this.type, i);
   this.socks.splice(i, 1);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3692,9 +3685,9 @@ sock.on(&#x27;message&#x27;, function(msg){
     <li>description and source-code<pre class="apidocCodePre">addSocket = function (sock){
   var parser = new Parser;
   var i = this.socks.push(sock) - 1;
-  debug(&#x27;%s add socket %d&#x27;, this.type, i);
+  debug('%s add socket %d', this.type, i);
   sock.pipe(parser);
-  parser.on(&#x27;data&#x27;, this.onmessage(sock));
+  parser.on('data', this.onmessage(sock));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3716,7 +3709,7 @@ sock.on(&#x27;message&#x27;, function(msg){
     <li>description and source-code<pre class="apidocCodePre">address = function (){
   if (!this.server) return;
   var addr = this.server.address();
-  addr.string = &#x27;tcp://&#x27; + addr.address + &#x27;:&#x27; + addr.port;
+  addr.string = 'tcp://' + addr.address + ':' + addr.port;
   return addr;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3742,14 +3735,14 @@ sock.on(&#x27;message&#x27;, function(msg){
 `PushSocket`s distribute messages round-robin:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.socket(&#x27;push&#x27;);
+var axon = require('axon');
+var sock = axon.socket('push');
 
 sock.<span class="apidocCodeKeywordSpan">bind</span>(3000);
-console.log(&#x27;push server started&#x27;);
+console.log('push server started');
 
 setInterval(function(){
-  sock.send(&#x27;hello&#x27;);
+  sock.send('hello');
 }, 150);
 ```
 ...</pre></li>
@@ -3770,7 +3763,7 @@ setInterval(function(){
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">close = function (fn){
-  debug(&#x27;%s closing&#x27;, this.type);
+  debug('%s closing', this.type);
   this.closing = true;
   this.closeSockets();
   if (this.server) this.closeServer(fn);
@@ -3793,10 +3786,10 @@ setInterval(function(){
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">closeServer = function (fn){
-  debug(&#x27;%s closing server&#x27;, this.type);
-  this.server.on(&#x27;close&#x27;, this.emit.bind(this, &#x27;close&#x27;));
+  debug('%s closing server', this.type);
+  this.server.on('close', this.emit.bind(this, 'close'));
   this.server.close();
-  fn &#x26;&#x26; fn();
+  fn &amp;&amp; fn();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3816,7 +3809,7 @@ setInterval(function(){
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">closeSockets = function (){
-  debug(&#x27;%s closing %d connections&#x27;, this.type, this.socks.length);
+  debug('%s closing %d connections', this.type, this.socks.length);
   this.socks.forEach(function(sock){
     sock.destroy();
   });
@@ -3840,59 +3833,59 @@ setInterval(function(){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">connect = function (port, host, fn){
   var self = this;
-  if (&#x27;server&#x27; == this.type) throw new Error(&#x27;cannot connect() after bind()&#x27;);
-  if (&#x27;function&#x27; == typeof host) {
+  if ('server' == this.type) throw new Error('cannot connect() after bind()');
+  if ('function' == typeof host) {
     fn = host;
     host = undefined;
   }
 
-  if (&#x27;string&#x27; == typeof port) {
+  if ('string' == typeof port) {
     port = url.parse(port);
 
-    if (port.protocol == &#x22;unix:&#x22;) {
+    if (port.protocol == "unix:") {
       host = fn;
       fn = undefined;
       port = port.pathname;
     } else {
-      host = port.hostname || &#x27;0.0.0.0&#x27;;
+      host = port.hostname || '0.0.0.0';
       port = parseInt(port.port, 10);
     }
   } else {
-    host = host || &#x27;0.0.0.0&#x27;;
+    host = host || '0.0.0.0';
   }
 
-  var max = self.get(&#x27;retry max timeout&#x27;);
+  var max = self.get('retry max timeout');
   var sock = new net.Socket;
   sock.setNoDelay();
-  this.type = &#x27;client&#x27;;
+  this.type = 'client';
 
   this.handleErrors(sock);
 
-  sock.on(&#x27;close&#x27;, function(){
-    self.emit(&#x27;socket close&#x27;, sock);
+  sock.on('close', function(){
+    self.emit('socket close', sock);
     self.connected = false;
     self.removeSocket(sock);
-    if (self.closing) return self.emit(&#x27;close&#x27;);
-    var retry = self.retry || self.get(&#x27;retry timeout&#x27;);
+    if (self.closing) return self.emit('close');
+    var retry = self.retry || self.get('retry timeout');
     setTimeout(function(){
-      debug(&#x27;%s attempting reconnect&#x27;, self.type);
-      self.emit(&#x27;reconnect attempt&#x27;);
+      debug('%s attempting reconnect', self.type);
+      self.emit('reconnect attempt');
       sock.destroy();
       self.connect(port, host);
       self.retry = Math.round(Math.min(max, retry * 1.5));
     }, retry);
   });
 
-  sock.on(&#x27;connect&#x27;, function(){
-    debug(&#x27;%s connect&#x27;, self.type);
+  sock.on('connect', function(){
+    debug('%s connect', self.type);
     self.connected = true;
     self.addSocket(sock);
-    self.retry = self.get(&#x27;retry timeout&#x27;);
-    self.emit(&#x27;connect&#x27;, sock);
-    fn &#x26;&#x26; fn();
+    self.retry = self.get('retry timeout');
+    self.emit('connect', sock);
+    fn &amp;&amp; fn();
   });
 
-  debug(&#x27;%s connect attempt %s:%s&#x27;, self.type, host, port);
+  debug('%s connect attempt %s:%s', self.type, host, port);
   sock.connect(port, host);
   return this;
 }</pre></li>
@@ -3901,12 +3894,12 @@ setInterval(function(){
 Receiver of `PushSocket` messages:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.socket(&#x27;pull&#x27;);
+var axon = require('axon');
+var sock = axon.socket('pull');
 
 sock.<span class="apidocCodeKeywordSpan">connect</span>(3000);
 
-sock.on(&#x27;message&#x27;, function(msg){
+sock.on('message', function(msg){
   console.log(msg.toString());
 });
 ```
@@ -4029,13 +4022,13 @@ sock.on(&#x27;message&#x27;, function(msg){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">handleErrors = function (sock){
   var self = this;
-  sock.on(&#x27;error&#x27;, function(err){
-    debug(&#x27;%s error %s&#x27;, self.type, err.code || err.message);
-    self.emit(&#x27;socket error&#x27;, err);
+  sock.on('error', function(err){
+    debug('%s error %s', self.type, err.code || err.message);
+    self.emit('socket error', err);
     self.removeSocket(sock);
-    if (!~ignore.indexOf(err.code)) return self.emit(&#x27;error&#x27;, err);
-    debug(&#x27;%s ignored %s&#x27;, self.type, err.code);
-    self.emit(&#x27;ignored error&#x27;, err);
+    if (!~ignore.indexOf(err.code)) return self.emit('error', err);
+    debug('%s ignored %s', self.type, err.code);
+    self.emit('ignored error', err);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4057,14 +4050,14 @@ sock.on(&#x27;message&#x27;, function(msg){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">onconnect = function (sock){
   var self = this;
-  var addr = sock.remoteAddress + &#x27;:&#x27; + sock.remotePort;
-  debug(&#x27;%s accept %s&#x27;, self.type, addr);
+  var addr = sock.remoteAddress + ':' + sock.remotePort;
+  debug('%s accept %s', self.type, addr);
   this.addSocket(sock);
   this.handleErrors(sock);
-  this.emit(&#x27;connect&#x27;, sock);
-  sock.on(&#x27;close&#x27;, function(){
-    debug(&#x27;%s disconnect %s&#x27;, self.type, addr);
-    self.emit(&#x27;disconnect&#x27;, sock);
+  this.emit('connect', sock);
+  sock.on('close', function(){
+    debug('%s disconnect %s', self.type, addr);
+    self.emit('disconnect', sock);
     self.removeSocket(sock);
   });
 }</pre></li>
@@ -4089,7 +4082,7 @@ sock.on(&#x27;message&#x27;, function(msg){
   var self = this;
   return function(buf){
     var msg = new Message(buf);
-    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+    self.emit.apply(self, ['message'].concat(msg.args));
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4133,7 +4126,7 @@ sock.on(&#x27;message&#x27;, function(msg){
     <li>description and source-code<pre class="apidocCodePre">removeSocket = function (sock){
   var i = this.socks.indexOf(sock);
   if (!~i) return;
-  debug(&#x27;%s remove socket %d&#x27;, this.type, i);
+  debug('%s remove socket %d', this.type, i);
   this.socks.splice(i, 1);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4228,7 +4221,7 @@ sock.on(&#x27;message&#x27;, function(msg){
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">off = function (event){
-  for (var i = 0; i &#x3c; this.listeners.length; ++i) {
+  for (var i = 0; i &lt; this.listeners.length; ++i) {
     if (this.listeners[i].event === event) {
       this.sock.unsubscribe(this.listeners[i].re);
       this.listeners.splice(i--, 1);
@@ -4264,8 +4257,8 @@ sock.on(&#x27;message&#x27;, function(msg){
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.send(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function(type, size, img){});
+push.send('image', { w: 100, h: 200 }, imageBuffer);
+pull.<span class="apidocCodeKeywordSpan">on</span>('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -4293,7 +4286,7 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
     var msg = new Message(buf);
     var topic = msg.shift();
 
-    for (var i = 0; i &#x3c; listeners.length; ++i) {
+    for (var i = 0; i &lt; listeners.length; ++i) {
       var listener = listeners[i];
 
       var m = listener.re.exec(topic);
@@ -4321,7 +4314,7 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">off = function (event){
-  for (var i = 0; i &#x3c; this.listeners.length; ++i) {
+  for (var i = 0; i &lt; this.listeners.length; ++i) {
     if (this.listeners[i].event === event) {
       this.sock.unsubscribe(this.listeners[i].re);
       this.listeners.splice(i--, 1);
@@ -4362,8 +4355,8 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.send(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function(type, size, img){});
+push.send('image', { w: 100, h: 200 }, imageBuffer);
+pull.<span class="apidocCodeKeywordSpan">on</span>('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -4396,7 +4389,7 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
     var msg = new Message(buf);
     var topic = msg.shift();
 
-    for (var i = 0; i &#x3c; listeners.length; ++i) {
+    for (var i = 0; i &lt; listeners.length; ++i) {
       var listener = listeners[i];
 
       var m = listener.re.exec(topic);
@@ -4475,7 +4468,7 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">matches = function (topic){
-  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+  for (var i = 0; i &lt; this.subscriptions.length; ++i) {
     if (this.subscriptions[i].test(topic)) {
       return true;
     }
@@ -4503,10 +4496,10 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
 
     if (subs) {
       var topic = msg.args[0];
-      if (!self.matches(topic)) return debug(&#x27;not subscribed to &#x22;%s&#x22;&#x27;, topic);
+      if (!self.matches(topic)) return debug('not subscribed to "%s"', topic);
     }
 
-    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+    self.emit.apply(self, ['message'].concat(msg.args));
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4522,7 +4515,7 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">send = function (){
-  throw new Error(&#x27;subscribers cannot send messages&#x27;);
+  throw new Error('subscribers cannot send messages');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -4532,8 +4525,8 @@ pull.<span class="apidocCodeKeywordSpan">on</span>(&#x27;message&#x27;, function
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -4552,25 +4545,25 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">subscribe = function (re){
-  debug(&#x27;subscribe to &#x22;%s&#x22;&#x27;, re);
+  debug('subscribe to "%s"', re);
   this.subscriptions.push(re = toRegExp(re));
   return re;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 sock.connect(3000);
 
-sock.on(&#x27;message&#x27;, function(msg){
+sock.on('message', function(msg){
   console.log(msg.toString());
 });
 ```
 
- `SubSocket`s may optionally `.<span class="apidocCodeKeywordSpan">subscribe</span>()` to one or more &#x22;topics&#x22; (the first
+ `SubSocket`s may optionally `.<span class="apidocCodeKeywordSpan">subscribe</span>()` to one or more "topics" (the first
  multipart value),
  using string patterns or regular expressions:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.socket(&#x27;sub&#x27;);
+var axon = require('axon');
+var sock = axon.socket('sub');
 
 sock.connect(3000);
 ...</pre></li>
@@ -4586,9 +4579,9 @@ sock.connect(3000);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">unsubscribe = function (re){
-  debug(&#x27;unsubscribe from &#x22;%s&#x22;&#x27;, re);
+  debug('unsubscribe from "%s"', re);
   re = toRegExp(re);
-  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+  for (var i = 0; i &lt; this.subscriptions.length; ++i) {
     if (this.subscriptions[i].toString() === re.toString()) {
       this.subscriptions.splice(i--, 1);
     }
@@ -4652,7 +4645,7 @@ sock.connect(3000);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">matches = function (topic){
-  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+  for (var i = 0; i &lt; this.subscriptions.length; ++i) {
     if (this.subscriptions[i].test(topic)) {
       return true;
     }
@@ -4685,10 +4678,10 @@ sock.connect(3000);
 
     if (subs) {
       var topic = msg.args[0];
-      if (!self.matches(topic)) return debug(&#x27;not subscribed to &#x22;%s&#x22;&#x27;, topic);
+      if (!self.matches(topic)) return debug('not subscribed to "%s"', topic);
     }
 
-    self.emit.apply(self, [&#x27;message&#x27;].concat(msg.args));
+    self.emit.apply(self, ['message'].concat(msg.args));
   };
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4709,7 +4702,7 @@ sock.connect(3000);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">send = function (){
-  throw new Error(&#x27;subscribers cannot send messages&#x27;);
+  throw new Error('subscribers cannot send messages');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -4719,8 +4712,8 @@ sock.connect(3000);
   you may pass strings, objects, and buffers as arguments.
 
 ```js
-push.<span class="apidocCodeKeywordSpan">send</span>(&#x27;image&#x27;, { w: 100, h: 200 }, imageBuffer);
-pull.on(&#x27;message&#x27;, function(type, size, img){});
+push.<span class="apidocCodeKeywordSpan">send</span>('image', { w: 100, h: 200 }, imageBuffer);
+pull.on('message', function(type, size, img){});
 ```
 
 ## Push / Pull
@@ -4744,25 +4737,25 @@ pull.on(&#x27;message&#x27;, function(type, size, img){});
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">subscribe = function (re){
-  debug(&#x27;subscribe to &#x22;%s&#x22;&#x27;, re);
+  debug('subscribe to "%s"', re);
   this.subscriptions.push(re = toRegExp(re));
   return re;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 sock.connect(3000);
 
-sock.on(&#x27;message&#x27;, function(msg){
+sock.on('message', function(msg){
   console.log(msg.toString());
 });
 ```
 
- `SubSocket`s may optionally `.<span class="apidocCodeKeywordSpan">subscribe</span>()` to one or more &#x22;topics&#x22; (the first
+ `SubSocket`s may optionally `.<span class="apidocCodeKeywordSpan">subscribe</span>()` to one or more "topics" (the first
  multipart value),
  using string patterns or regular expressions:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.socket(&#x27;sub&#x27;);
+var axon = require('axon');
+var sock = axon.socket('sub');
 
 sock.connect(3000);
 ...</pre></li>
@@ -4783,9 +4776,9 @@ sock.connect(3000);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">unsubscribe = function (re){
-  debug(&#x27;unsubscribe from &#x22;%s&#x22;&#x27;, re);
+  debug('unsubscribe from "%s"', re);
   re = toRegExp(re);
-  for (var i = 0; i &#x3c; this.subscriptions.length; ++i) {
+  for (var i = 0; i &lt; this.subscriptions.length; ++i) {
     if (this.subscriptions[i].toString() === re.toString()) {
       this.subscriptions.splice(i--, 1);
     }
@@ -4810,7 +4803,7 @@ sock.connect(3000);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">socket = function (type, options){
   var fn = exports.types[type];
-  if (!fn) throw new Error(&#x27;invalid socket type &#x22;&#x27; + type + &#x27;&#x22;&#x27;);
+  if (!fn) throw new Error('invalid socket type "' + type + '"');
   return new fn(options);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -4820,14 +4813,14 @@ sock.connect(3000);
 `PushSocket`s distribute messages round-robin:
 
 ```js
-var axon = require(&#x27;axon&#x27;);
-var sock = axon.<span class="apidocCodeKeywordSpan">socket</span>(&#x27;push&#x27;);
+var axon = require('axon');
+var sock = axon.<span class="apidocCodeKeywordSpan">socket</span>('push');
 
 sock.bind(3000);
-console.log(&#x27;push server started&#x27;);
+console.log('push server started');
 
 setInterval(function(){
-  sock.send(&#x27;hello&#x27;);
+  sock.send('hello');
 }, 150);
 ...</pre></li>
     </ul>
@@ -4933,7 +4926,7 @@ setInterval(function(){
   this.n = 0;
   this.ids = 0;
   this.callbacks = {};
-  this.identity = this.get(&#x27;identity&#x27;);
+  this.identity = this.get('identity');
   this.use(queue());
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4993,7 +4986,7 @@ setInterval(function(){
   var len = args.length;
   var ret = new Array(len);
 
-  for (var i = 0; i &#x3c; len; i++) {
+  for (var i = 0; i &lt; len; i++) {
     ret[i] = args[i];
   }
 
@@ -5011,3 +5004,4 @@ setInterval(function(){
     ]
 </div>
 </div>
+</body></html>
