@@ -1,6 +1,6 @@
 # npmdoc-axon
 
-#### api documentation for  [axon (v2.0.3)](https://github.com/visionmedia/axon#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-axon.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-axon) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-axon.svg)](https://travis-ci.org/npmdoc/node-npmdoc-axon)
+#### basic api documentation for  [axon (v2.0.3)](https://github.com/visionmedia/axon#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-axon.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-axon) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-axon.svg)](https://travis-ci.org/npmdoc/node-npmdoc-axon)
 
 #### High-level messaging & socket patterns implemented in pure js
 
@@ -82,7 +82,8 @@
     "scripts": {
         "test": "make test"
     },
-    "version": "2.0.3"
+    "version": "2.0.3",
+    "bin": {}
 }
 ```
 
